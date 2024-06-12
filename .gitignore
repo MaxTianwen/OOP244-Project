@@ -1,19 +1,6 @@
-# ignore files with no extenion
-*
-!*.*
-!*/
-
-# XCode
-## User settings
-xcuserdata/
-
-## Xcode 8 and earlier
-*.xcscmblueprint
-*.xccheckout
-
-
 # Visual Studio
 *.sdf
+*.sln
 *.user
 *.suo
 *.opensdf
