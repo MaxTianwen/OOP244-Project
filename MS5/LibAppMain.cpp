@@ -13,13 +13,16 @@
 #include "LibApp.h"
 #include "Date.h"
 #include "Menu.h"
-using namespace sdds;
+using namespace seneca;
 void runApp(const char* filename) {
    size_t i{};
    char ch;
    char original[31] = "orig";
    // creating original file name
-   while(filename[i]) original[4u + i] = filename[i++];
+   while(filename[i]) { 
+     original[4u + i] = filename[i];
+     i++;
+   }
    original[4u + i] = char(0);
    // copiying original values to data file;
    std::ofstream outFile(filename);
@@ -30,11 +33,11 @@ void runApp(const char* filename) {
    outFile.close();
    inFile.close();
    // setting test values
-   sdds::sdds_day = 10;
-   sdds::sdds_mon = 8;
-   sdds::sdds_year = 2023;
-   sdds::sdds_test = true;
-   sdds::LibApp app(filename);
+   seneca::seneca_day = 13;
+   seneca::seneca_mon = 8;
+   seneca::seneca_year = 2024;
+   seneca::seneca_test = true;
+   seneca::LibApp app(filename);
    app.run();
    std::cout << "Content of " << filename << "\n=========>\n";
    inFile.open(filename);

@@ -996,7 +996,7 @@ Overload the extraction operator so an object of type Streamable can be read fro
 
 
 ## Publication class module
-The publication class is a general encapsulation of any periodic publication. 
+The publication class is a general encapsulation of any periodic publication. Publication inherits from Streamable.
 > Later by adding an author to the descendant of the **Publication** class we will encapsulate a **Book** for the system.
 
 ### Publication Attributes
