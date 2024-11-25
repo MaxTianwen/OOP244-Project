@@ -8,8 +8,11 @@
 /////////////////////////////////////////////////////////////////
 #include <iostream>
 #include "LibApp.h"
+
 using namespace std;
-int main() {
+
+int main() 
+{
    seneca::LibApp theApp;
    cout << endl << "Testing exiting with no change:" << endl;
    theApp.run();
@@ -21,6 +24,7 @@ int main() {
    theApp.run();
    return 0;
 }
+
 /* data to be entered:
  1- 1
  2- 0

@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Book.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,11 +30,11 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Book.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Book.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -51,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Book.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

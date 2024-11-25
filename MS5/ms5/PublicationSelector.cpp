@@ -1,24 +1,36 @@
-// Final Project 
-// PublicationSelector
-// File PublicationSelector.h
-// Version 1.0
-// Author	Fardad Soleimanloo
-// Revision History
-// -----------------------------------------------------------
-// Name               Date                 Reason
-//
-/////////////////////////////////////////////////////////////////
+/* Citation and Sources...
+Final Project Milestone 5
+Module: Utils
+Filename: Utils.h
+Version 1.0
+Author	Tianwen Wang
+Revision History
+-----------------------------------------------------------
+Date      Reason
+2024/06/15  Preliminary release
+
+-----------------------------------------------------------
+I have done all the coding by myself and only copied the code
+that my professor provided to complete my workshops and assignments.
+----------------------------------------------------------- */
+
+
 #define _CRT_SECURE_NO_WARNINGS
+
 #include <iostream>
 #include <cstring>
 #include "PublicationSelector.h"
+
 using namespace std;
-namespace seneca {
-   void PublicationSelector::display(int page) const {
+namespace seneca 
+{
+   void PublicationSelector::display(int page) const 
+   {
       cout << m_title << endl 
            << " Row  |LocID | Title                          |Mem ID | Date       | Author          |" << endl
            << "------+------+--------------------------------+-------+------------+-----------------|" << endl;
-      for (int i = (page - 1) * m_pageSize ; i < m_noOfPubs && i < page * m_pageSize; i++) {
+      for (int i = (page - 1) * m_pageSize ; i < m_noOfPubs && i < page * m_pageSize; i++) 
+      {
          cout.width(4);
          cout.setf(ios::right);
          cout.fill(' ');
@@ -27,13 +39,16 @@ namespace seneca {
          cout << "- " << *m_pub[i] << endl;
       }
    }
-   int PublicationSelector::getSelectedLibRef()const{
+
+   int PublicationSelector::getSelectedLibRef() const
+   {
       bool ok{};
       char newline{};
       char chPeek{};
       int val{};
       int retVal{};
-      if (m_noOfPubs > m_pageSize) {
+      if (m_noOfPubs > m_pageSize) 
+      {
          if (m_currentPage > 1) 
             cout << "> P (Previous Page)" << endl;
          if (m_currentPage * m_pageSize < m_noOfPubs) 
@@ -71,12 +86,14 @@ namespace seneca {
          default:
             cin >> val;
             newline = cin.get();
-            if (cin.fail() || newline != '\n') {
+            if (cin.fail() || newline != '\n') 
+            {
                ok = false;
                cin.clear();
                cin.ignore(1000, '\n');
             }
-            else {
+            else 
+            {
                ok = val >= 1 && val <= m_noOfPubs;
                if(ok) retVal = m_pub[val - 1]->getRef();
             }
@@ -85,21 +102,31 @@ namespace seneca {
       } while (!ok && cout << "Invalid selection, retry" << endl << "> ");
       return retVal;
    }
-   PublicationSelector::~PublicationSelector() {
+
+   PublicationSelector::~PublicationSelector() 
+   {
       delete[] m_pub;
    }
-   PublicationSelector::PublicationSelector(const char* title, int pageSize) :m_pageSize{ pageSize } {
+
+   PublicationSelector::PublicationSelector(const char* title, int pageSize) : m_pageSize{ pageSize } 
+   {
       strncpy(m_title, title, 80);
       m_title[80] = 0;
       m_pub = new const Publication*[m_arraySize = allocationUnit];
    }
-   PublicationSelector& PublicationSelector::operator<<(const Publication& pub) {
+
+   PublicationSelector& PublicationSelector::operator<<(const Publication& pub) 
+   {
       return operator<<(&pub);
    }
-   PublicationSelector& PublicationSelector::operator<<(const Publication* pub) {
-      if (m_noOfPubs == m_arraySize) {
+
+   PublicationSelector& PublicationSelector::operator<<(const Publication* pub) 
+   {
+      if (m_noOfPubs == m_arraySize) 
+      {
          const Publication** temp = new const Publication*[m_arraySize += allocationUnit];
-         for (int i = 0; i < m_noOfPubs; i++) {
+         for (int i = 0; i < m_noOfPubs; i++) 
+         {
             temp[i] = m_pub[i];
          }
          delete[] m_pub;
@@ -109,12 +136,15 @@ namespace seneca {
       return *this;
    }
 
-   void PublicationSelector::reset() {
+   void PublicationSelector::reset() 
+   {
       delete[] m_pub;
       m_pub = new const Publication*[20];
       m_noOfPubs = 0;
    }
-   int PublicationSelector::run() {
+
+   int PublicationSelector::run() 
+   {
       int retVal{};
       do {
          display(m_currentPage);
@@ -130,21 +160,29 @@ namespace seneca {
       } while (retVal && retVal < 3);
       return retVal;
    }
-   void PublicationSelector::sort() {
+
+   void PublicationSelector::sort() 
+   {
       int i, j;
       const Publication* temp{};
-      for (i = 0; i < m_noOfPubs - 1; i++) {
-         for (j = 0; j < m_noOfPubs - i - 1; j++) {
-            if (m_pub[j]->checkoutDate() > m_pub[j + 1]->checkoutDate()) {
+      for (i = 0; i < m_noOfPubs - 1; i++) 
+      {
+         for (j = 0; j < m_noOfPubs - i - 1; j++) 
+         {
+            if (m_pub[j]->checkoutDate() > m_pub[j + 1]->checkoutDate()) 
+            {
                temp = m_pub[j];
                m_pub[j] = m_pub[j + 1];
                m_pub[j + 1] = temp;
             }
          }
       }
-      for (i = 0; i < m_noOfPubs - 1; i++) {
-         for (j = 0; j < m_noOfPubs - i - 1; j++) {
-            if (strcmp((const char*)*m_pub[j], (const char*)*m_pub[j + 1]) > 0 ) {
+      for (i = 0; i < m_noOfPubs - 1; i++) 
+      {
+         for (j = 0; j < m_noOfPubs - i - 1; j++) 
+         {
+            if (strcmp((const char*)*m_pub[j], (const char*)*m_pub[j + 1]) > 0 ) 
+            {
                temp = m_pub[j];
                m_pub[j] = m_pub[j + 1];
                m_pub[j + 1] = temp;
@@ -152,7 +190,9 @@ namespace seneca {
          }
       }
    }
-   PublicationSelector::operator bool()const {
+
+   PublicationSelector::operator bool() const 
+   {
       return m_noOfPubs > 0;
    }
 }
